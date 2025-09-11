@@ -1,7 +1,104 @@
-body,
-html {
-  /* height:100%; */
+/* ===== Global / Page Grid ===== */
+:root {
+  --gap: 16px; /* Used for equal spacing between items AND page edges */
+}
 
-  margin: 0px;
-  padding: 0px;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden; /* No horizontal scroll */
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Header / Main / Footer */
+  max-height: 100dvh;
+}
+
+
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto; /* left brand, right nav */
+  align-items: center;
+  padding: 12px var(--gap);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* children can shrink */
+  overflow: hidden; /* anti scroll */
+}
+
+
+.store {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 columns*/
+  gap: var(--gap);
+  padding-inline: var(--gap);
+  padding-block: var(--gap);
+  overflow-y: auto;
+  flex: 1; /* flex to parent size */
+  min-height: 0; 
+  overflow: hidden; /* anti scroll */
+}
+
+.store-item {
+  background: white;
+  border: 1px solid lightgrey;
+  border-radius: 8px;
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* name/desc/info */
+  padding: 16px;
+  gap: 8px;
+}
+
+.store-item .title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.store-item .desc {
+  margin: 0;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.store-item .info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* rating price stock */
+  gap: 8px;
+  white-space: nowrap; 
+}
+
+.footer {
+  padding: 12px var(--gap);
+  border-top: 1px solid lightgrey;
+  text-align: center;
+  color: grey;
 }
